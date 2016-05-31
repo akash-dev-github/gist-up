@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% load staticfiles %}
+        {% csrf_token %}
+
+		<title>Login</title>
+
+		<!-- BEGIN META -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="keywords" content="Tripigator,Operations,Admin Tool">
+		<meta name="description" content="Operations tool">
+		<meta name="robots" content="noindex, nofollow"/>
+		<!-- END META -->
+
+		<!-- BEGIN STYLESHEETS -->
+		<link href='//fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>
+		<link type="text/css" rel="stylesheet" href="{% static 'login/assets/css/theme-default/bootstrap.css' %}" />
+        <link type="text/css" rel="stylesheet" href="{% static 'login/assets/css/theme-default/materialadmin.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'login/assets/css/theme-default/font-awesome.min.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'login/assets/css/theme-default/material-design-iconic-font.min.css' %}" />
+		<!-- END STYLESHEETS -->
+
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script type="text/javascript" src="//www.codecovers.eu/assets/js/modules/materialadmin/libs/utils/html5shiv.js?1422823601"></script>
+		<script type="text/javascript" src="//www.codecovers.eu/assets/js/modules/materialadmin/libs/utils/respond.min.js?1422823601"></script>
+    	<![endif]-->
+    	<style type="text/css">
+    		.darken {
+  				background-image:
+
+    			url('/static/login/images/bg2.jpg');
+    			color:white;
+    			position: absolute;
+			}
+			#modules {
+				width: 100%;
+
+			}
+
+			.module {
+				color: white;
+			}
+			.iconText {
+				font-size: 12px;
+				text-align: left;
+			}
+			.icon {
+				float: right;
+			}
+			.iconHead {
+				float: left;
+				font-size: 13px;
+			}
+
+			@media screen and (max-width: 999px) {
+  				.iconText {
+  					display: none;
+  				}
+  				.icon {
+  					float:none;
+  				}
+  				.iconHead{
+  					float: none;
+  					font-size: 12px;
+
+  				}
+  			}
+    	</style>
+	</head>
+
+	<body class="menubar-hoverable header-fixed ">
+		<!-- BEGIN LOGIN SECTION -->
+		<section class="section-account">
+			<div class="img-backdrop darken" style="text-align:center;">
+
+			</div>
+			<div class="spacer" style="text-align:center;">
+				<div class = "row">
+				<img src = "{% static 'login/images/logo_white.png' %}" width='250'  style="margin-top:1%;"> <!--main logo -->
+			</div>
+
+			</div> <!--spacer -->
+			<div class="card contain-sm style-transparent">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<br/>
+
+							<div id="loginForm" class ="form">
+								<span class="text-lg text-bold text-primary">Tripigator Tools</span>
+								<br/><br/>
+
+									{% csrf_token %}
+									<p id="err_msg" style="color:red;"></p>
+									<div class="form-group">
+										<input type="text" class="form-control" id="email" name="email"  />
+										<label for="email">E-mail</label>
+										<p class="help-block" id="emailHelp"></p>
+									</div>
+									<div class="form-group">
+										<input type="password" class="form-control" id="password" name="password"  />
+										<label for="password">Password</label>
+									</div>
+									<br/>
+									<div class="row">
+										<div class="col-xs-6 text-left">
+
+										</div><!--end .col -->
+										<div class="col-xs-6 text-right">
+											<button class="btn btn-primary btn-raised" type="submit" id="loginButton">Login</button>
+										</div><!--end .col -->
+									</div><!--end .row -->
+							</div>
+
+							<div id="signUpFormDiv" class="form">
+									{% csrf_token %}
+									<span class="text-lg text-bold text-primary">New User</span>
+									<p id="err_msg1" style="color:red;"></p>
+									<div class="form-group">
+										<input type="text" class="form-control" id="newUserEmail" name="newUserEmail" required />
+										<label for="newUserEmail">E-mail </label>
+										<p class="help-block" id="newUserEmailHelp"></p>
+									</div>
+
+									<div class="form-group">
+										<input type="password" class="form-control" id="newUserPassword" name = "newUserPassword" required/>
+										<label for="newUserPassword">Password </label>
+									</div>
+									<div class="form-group">
+										<input type="password" class="form-control" id="newUserPasswordConfirm" required/>
+										<label for="newUserPasswordConfirm">Confirm Password </label>
+										<p class ="help-block" id="passwordConfirmStatus"></p>
+									</div>
+									<div id="createAccountButtonDiv">
+										<button class="btn btn-primary btn-raised" type="submit" id="createAccountButton">Create Account</button>
+									</div>
+								<div id="backToLoginDiv">
+									<br />
+									<a id='backToLogin'> Already have an account? Login. </a>
+								</div>
+							</div> <!--signupform-->
+							<br /><br /><br />
+
+						</div><!--end .col -->
+						<div class="col-sm-5 col-sm-offset-1 text-center" id="signUpButtonDiv">
+							<br><br>
+							<div id="signUpButtonContainer">
+								<h3 class="text-light">
+									No account yet?
+								</h3>
+								<button class="btn btn-block btn-raised btn-info" id="signUpButton" type="button">Sign up here</button>
+								<br><br>
+							</div>
+						</div>
+					</div><!--end .row -->
+				</div><!--end .card-body -->
+			</div><!--end .card -->
+		</section>
+	<!-- END LOGIN SECTION -->
+
+		<!-- BEGIN JAVASCRIPT -->
+		<script src="{% static 'login/assets/js/libs/jquery/jquery-1.11.2.min.js' %}"></script>
+		<script src="{% static 'login/assets/js/libs/jquery/jquery-migrate-1.2.1.min.js' %}"></script>
+     	<script src="{% static 'login/assets/js/libs/bootstrap/bootstrap.min.js' %}"></script>
+        <script src="{% static 'login/assets/js/libs/spin.js/spin.min.js' %}"></script>
+        <script src="{% static 'login/assets/js/libs/autosize/jquery.autosize.min.js' %}"></script>
+        <script src="{% static 'login/assets/js/libs/nanoscroller/jquery.nanoscroller.min.js' %}"></script>
+		<!-- END JAVASCRIPT -->
+
+	</body>
+	<script>
+		enableCSRFProtection();
+
+		$("#err_msg").hide();
+		$("#err_msg1").hide();
+		$('#backToLogin').css('cursor','pointer');
+		$('#createAccountButton').prop('disabled',true);
+		$('#signUpFormDiv,#retrievePasswordDiv,#backToLoginDiv').hide();
+
+		$('#signUpButton').click(function() {
+			$('#loginForm,#signUpButtonContainer').hide();
+			$("#err_msg1").hide();
+			$("#newUserEmail").val = "";
+			$("#newUserPassword").val = "";
+			$('#newUserPasswordConfirm').val = "";
+			$('#signUpFormDiv,#backToLoginDiv').fadeIn('slow');
+		});
+
+		$('#backToLogin').click(function() {
+			$('#signUpFormDiv,#backToLoginDiv').hide();
+			$("#err_msg").hide();
+			$("#email").val = "";
+			$("#password").val = "";
+			$('#loginForm,#signUpButtonContainer').fadeIn('slow');
+		});
+
+		var email = $('#email').val();
+		var regex =  /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		if(regex.test(email)) {
+			$(helpTextId).html("<i class= 'fa' style='color:green;'></i>Correct Format!");
+			$(buttonToDeactivate).prop('disabled',false);
+		}
+
+		emailChecker('#email','#emailHelp','#loginButton');
+		emailChecker('#newUserEmail','#newUserEmailHelp','#createAccountButton');
+
+		$('#newUserPasswordConfirm').on('focusin', function(){
+			var val = $('#newUserPassword').val();
+			if(val==""){
+
+				$('#newUserPasswordConfirm').prop('readonly',true);
+				$('#passwordConfirmStatus').html("<i class= 'fa' style='color:red;'></i>Enter Password First");
+
+			}
+			else {
+				$('#newUserPasswordConfirm').prop('readonly',false);
+				$('#passwordConfirmStatus').html("");
+			}
+			$('#newUserPasswordConfirm').on('input', function() {
+				var val = $('#newUserPassword').val();
+				if($('#newUserPasswordConfirm').val().length != val.length) {
+        			$('#passwordConfirmStatus').html("<i class= 'fa' style='color:red;'></i>Passwords dont match");
+        			$('#createAccountButton').prop('disabled',true);
+        		}
+        		else {
+     				if($('#newUserPasswordConfirm').val() != val) {
+            			$('#passwordConfirmStatus').html("<i class= 'fa' style='color:red;'></i>Passwords dont match");
+            			$('#createAccountButton').prop('disabled',true);
+            		}
+            		else {
+                		$('#passwordConfirmStatus').html("<i class= 'fa' style='color:green;'></i>Good to go!");
+                		$('#createAccountButton').prop('disabled',false);
+            		}
+        		}
+		});
+		});
+
+		function emailChecker(id,helpTextId,buttonToDeactivate)
+		{
+
+			$(id).on('input', function() {
+				var email = $(id).val();
+				var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				if(regex.test(email)) {
+					$(helpTextId).html("<i class= 'fa' style='color:green;'></i>Correct Format!");
+					$(buttonToDeactivate).prop('disabled',false);
+				}
+				else {
+					$(helpTextId).html("<i class= 'fa' style='color:red;'></i>Incorrect Format");
+					$(buttonToDeactivate).prop('disabled',true);
+				}
+			});
+		}
+
+		function getCookie(name)
+		{
+   			var cookieValue = null;
+   			if (document.cookie && document.cookie != '') {
+      			var cookies = document.cookie.split(';');
+      			for (var i = 0; i < cookies.length; i++) {
+         			var cookie = jQuery.trim(cookies[i]);
+         			// Does this cookie string begin with the name we want?
+         			if (cookie.substring(0, name.length + 1) == (name + '=')) {
+            			cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            			break;
+         			}
+      			}
+   			}
+   			return cookieValue;
+		}
+
+		function csrfSafeMethod(method)
+		{
+   			return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+		}
+
+		function enableCSRFProtection()
+		{
+   			var csrftoken = getCookie('csrftoken');
+   			$.ajaxSetup({
+      			beforeSend: function(xhr, settings) {
+         			if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            			xhr.setRequestHeader("X-CSRFToken", csrftoken);
+         			}
+      			}
+   			});
+		}
+
+		$("#loginForm").on("click", "#loginButton",function signin(event, ui){
+			var post_data = {
+				email : $("#email").val(),
+				password : $("#password").val(),
+			}
+
+			$.ajax({
+        		url:"/account/api/sign_in",
+        		type:'POST',
+        		data: post_data,
+        		success: function(data) {
+          			console.log("signin_data:",data);
+          			if (data.success == true){
+          				location.href = data.login_url;
+          			}
+          			else{
+          				$("#err_msg").text(data.message);
+						$("#err_msg").show();
+          			}
+        		}
+      		});
+		});
+
+
+		$("#signUpFormDiv").on("click", "#createAccountButton",function signup(event, ui){
+			if ($("#newUserPassword").val() == $("#newUserPasswordConfirm").val()){
+			var post_data = {
+				email : $("#newUserEmail").val(),
+				password : $("#newUserPassword").val(),
+			}
+
+			$.ajax({
+        		url:"/account/api/sign_up",
+        		type:'POST',
+        		data: post_data,
+        		success: function(data) {
+          			console.log("signup_data:",data);
+          			if (data.success == true){
+          				$('#backToLogin').click();
+          				$("#err_msg").css("color", "green");
+						$("#err_msg").text("Sign Up Successful. You will be able to login after the admin approves your request.");
+						$("#err_msg").show();
+          			}
+          			else{
+          				$("#err_msg1").text(data.message);
+						$("#err_msg1").show();
+          			}
+        		}
+      		});
+      		}
+      		else{
+      			$("#err_msg1").text("Passwords dont match!");
+				$("#err_msg1").show();
+      		}
+		});
+
+	/*	if (localStorage.checkBoxValidation && localStorage.checkBoxValidation != '') {
+        	$('#rememberMe').prop('checked', 'checked');
+        	$('#email').val(localStorage.userName);
+        	$('#password').val(localStorage.password);
+    	} else {
+        	$('#rememberMe').removeAttr('checked');
+        	$('#email').val('');
+        	$('#password').val('');
+    	}
+
+		$('#forgotPassword').click(function() {
+			$('#loginForm').hide();
+			$('#retrievePasswordDiv').fadeIn('slow');
+		});
+		*/
+		/*
+    	$('#rememberMe').click(function() {
+        	if ($('#rememberMe').is(':checked')) {
+            	localStorage.userName = $('#email').val();
+            	localStorage.password = $('#password').val();
+            	localStorage.checkBoxValidation = $('#rememberMe').val();
+            	console.log($('#rememberMe').val());
+        	} else {
+        		console.log('not checked');
+            	localStorage.userName = '';
+            	localStorage.password = '';
+            	localStorage.checkBoxValidation = '';
+        	}
+    	});
+		*/
+	</script>
+</html>
