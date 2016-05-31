@@ -1,8 +1,8 @@
 from django.conf.urls import url
-import views
+from login.views import sign_in, sign_up, logout_view
 
 urlpatterns = [
-    url(r'^api/sign_in$', views.sign_in, name='sign_in'),
-    url(r'^api/sign_up$', views.sign_up, name='sign_up'),
-    url(r'^logout$', views.logout_view, name='logout'),
+    url(r'^sign_in$', sign_in, name='sign_in'),
+    url(r'^sign_up$', sign_up, name='sign_up'),
+    url(r'^logout$', logout_view, name='logout'),
 ]

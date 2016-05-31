@@ -72,5 +72,8 @@ def sign_up(request):
 
 @api_view()
 def logout_view(request):
+    """
+    logout a user
+    """
     logout(request)
     return Response({'success': True}, status=status.HTTP_200_OK)

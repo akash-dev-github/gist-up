@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 import json
-from time import timezone
 
 from django.db import models
 import six
@@ -22,12 +21,11 @@ class Article(models.Model):
     text = models.TextField(blank=True, default='')
 
     is_active = models.BooleanField(default=True)
-    created_datetime = models.DateTimeField(auto_now_add=True, default=timezone.now)
-    last_modified = models.DateTimeField(auto_now=True, default=timezone.now)
+    created_datetime = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return "%s %s %s" % (
-            self.inclusion_name,
-            self.combination_id,
-            self.trip_type,
+        return "%s %s" % (
+            self.title,
+            self.tags,
         )
