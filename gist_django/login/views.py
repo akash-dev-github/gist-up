@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from rest_framework import status
 
 from rest_framework.response import Response
@@ -77,3 +77,5 @@ def logout_view(request):
     """
     logout(request)
     return Response({'success': True}, status=status.HTTP_200_OK)
+
+
