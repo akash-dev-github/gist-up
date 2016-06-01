@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import socket
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -80,9 +82,12 @@ WSGI_APPLICATION = 'gist_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'akashsharma$gistupDB',
+        'USER': 'akashsharma',
+        'PASSWORD': 'gistupadmin',
+        'HOST': 'akashsharma.mysql.pythonanywhere-services.com',
+    },
 }
 
 
@@ -123,3 +128,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# ############### system specific settings ###############################
+
+production_hosts = ['giles-liveconsole1']  # 'hostname' in terminal to get hostname
+
+if socket.gethostname() in production_hosts:
+    SYS_ENV = 'prod'
+    DEBUG = False
+    TEMPLATE_DEBUG = DEBUG
+    ALLOWED_HOSTS = ['*']
+
+else:
+    SYS_ENV = 'dev'
+    DEBUG = True
+    TEMPLATE_DEBUG = DEBUG
+    ALLOWED_HOSTS = ['*']
